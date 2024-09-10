@@ -9,10 +9,11 @@ type Web struct {
 }
 
 type App struct {
-	Name   string `json:"name"`
-	Start  string `json:"start"`
-	Stop   string `json:"stop"`
-	Banner string `json:"banner"`
+	Name   string            `json:"name"`
+	Start  string            `json:"start"`
+	Stop   string            `json:"stop"`
+	Banner string            `json:"banner"`
+	Env    map[string]string `json:"env"`
 }
 
 type Config struct {

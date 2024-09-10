@@ -154,6 +154,7 @@ The web object contains information on the web settings.
 | start | string | `NULL` | The command to execute when starting the application. |
 | stop | string | `NULL` | The command to execute when stopping the application. |
 | banner | string | `NULL` | The banner to use inside of the web-view card. |
+| env | Object | `{}` | A string to string object that represents environmental variables (key => value). |
 
 <details>
     <summary>Example(s)</summary>
@@ -164,7 +165,11 @@ The web object contains information on the web settings.
         "name": "Steam Link",
         "start": "flatpak run com.valvesoftware.SteamLink",
         "stop": "flatpak stop com.valvesoftware.SteamLink",
-        "banner": "/images/steam.jpg"
+        "banner": "/images/steam.jpg",
+        "env": {
+            "DISPLAY": ":0",
+            "SOMETHINGELSE": "2"
+        }
     },
     {
         "name": "RetroArch",

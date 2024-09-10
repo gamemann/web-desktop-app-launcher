@@ -61,6 +61,18 @@ func BackendHandler(w http.ResponseWriter, r *http.Request, cfg *config.Config) 
 	// Run command.
 	cmd := exec.Command(cmdSplit[0], cmdSplit[1:]...)
 
+	// Get current environment.
+	env := os.Environ()
+
+	// Add environmental variables (yeah we need a better way on handling this in the future).
+	for _, app := range cfg.Apps {
+		if app.Start == cmdData.Cmd || app.Stop == cmdData.Cmd {
+			for k, v := range app.Env {
+				env = append(env, fmt.Sprintf("%s=%s", k, v))
+			}
+		}
+	}
+
 	// We need to get pipes now for logging.
 	outPipe, _ := cmd.StdoutPipe()
 	errPipe, _ := cmd.StderrPipe()
