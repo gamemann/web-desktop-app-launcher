@@ -1,6 +1,6 @@
 **Work In Progress!**
 
-After purchasing a [mini-PC](https://www.amazon.com/dp/B0D5CS3CDS) that I planned to use for movie and game streaming and emulation ([Dolphin](https://dolphin-emu.org/); Wii/GameCube), I found opening specific applications from the terminal was inconvenient. I wanted an application that allowed me to launch specific applications such as [Steam Link](https://store.steampowered.com/app/353380/Steam_Link/), [RetroArch](https://www.retroarch.com/), [Dolphin](https://dolphin-emu.org/), and [Plex HTPC](https://support.plex.tv/articles/htpc-getting-started/) from the desktop itself and through a website.
+After purchasing a [mini-PC](https://www.amazon.com/dp/B0D5CS3CDS) that I planned to use for movie and game streaming along with emulation ([Dolphin](https://dolphin-emu.org/); Wii/GameCube), I found opening specific applications from the terminal was inconvenient. I wanted an application that allowed me to launch specific applications such as [Steam Link](https://store.steampowered.com/app/353380/Steam_Link/), [RetroArch](https://www.retroarch.com/), [Dolphin](https://dolphin-emu.org/), and [Plex HTPC](https://support.plex.tv/articles/htpc-getting-started/) from the desktop itself and through a website.
 
 While I am sure there are applications that are already capable of achieving this, I wanted to make my own applications to gain more experience (specifically with C++ and GTK + WebKit2GTK).
 
@@ -10,7 +10,7 @@ While I am sure there are applications that are already capable of achieving thi
 ### Website
 ![Website Preview](./preview/web-preview01.png)
 
-**NOTE** - I may improve design in the future, but wanted to create something simple for now.
+**NOTE** - I may improve the front-end web design in the future, but wanted to create something simple first.
 
 ## Technologies Used
 ### Desktop Application
@@ -27,19 +27,27 @@ I recommend using the [`Makefile`](./Makefile) via `make` to build this project.
 * GTK 3 & WebKit2GTK (e.g. `libgtk-3-dev` and `libwebkit2gtk-4.0-dev` Ubuntu/Debian packages)
 * [`nlohmann/json`](https://github.com/nlohmann/json)
 
+For Ubuntu/Debian, I'd recommend the following command to install the required system packages.
+
+```bash
+sudo apt install -y libgtk-3-dev libwebkit2gtk-4.0-dev pkgconf build-essential make cmake golang-go
+```
+
 ### Cloning
 Clone the repository recursively so that the JSON sub-module is also cloned.
 
 ```bash
 # Clone the repository
-git clone --recursive https://github.com/gamemann/web-desktop-app-launcher.git
+git clone --recursive https://github.com/gamemann/web-desktop-app-launcher.git /var/web-desktop-app-launcher
 
 # Change directories.
-cd web-desktop-app-launcher
+cd /var/web-desktop-app-launcher
 ```
 
+**NOTE** - The reason I clone into `/var/` is because that is the directory the [`systemd`](./systemd/) services use as the working directory. You may change this if you'd like of course.
+
 ### Desktop Application
-#### Building JSON Library
+#### Building The JSON Library
 You will need to build the [`nlohmann/json`](https://github.com/nlohmann/json) before building the main desktop application. You can use `make json` or the following shell commands.
 
 ```bash
@@ -71,7 +79,7 @@ At this time, both the web and desktop applications use the same command-line op
 | `-h --help` | N/A | Prints the help menu. |
 
 ## Configuration
-Both the desktop and web applications parse a single JSON config file (default path is `/etc/wdal/conf.json`). In both applications, you can also change the config path via the `-c` and `--cfgpath` command-line flags (e.g. `-c ./conf.json`).
+Both the desktop and web applications parse a single JSON config file (the default path is `/etc/wdal/conf.json`). In both applications, you can also change the config path via the `-c` and `--cfgpath` command-line flags (e.g. `-c ./conf.json`).
 
 | Key | Type | Default | Description |
 | --- | ---- | ------- | ----------- |
