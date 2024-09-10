@@ -64,7 +64,12 @@ func BackendHandler(w http.ResponseWriter, r *http.Request, cfg *config.Config) 
 	// Get current environment.
 	env := os.Environ()
 
-	// Add environmental variables (yeah we need a better way on handling this in the future).
+	// Add global environmental variables.
+	for k, v := range cfg.Web.Env {
+		env = append(env, fmt.Sprintf("%s=%s", k, v))
+	}
+
+	// Add appplication-specific environmental variables (yeah we need a better way on handling this in the future).
 	for _, app := range cfg.Apps {
 		if app.Start == cmdData.Cmd || app.Stop == cmdData.Cmd {
 			for k, v := range app.Env {

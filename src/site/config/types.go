@@ -6,6 +6,8 @@ type Web struct {
 
 	LogToFile    bool   `json:"log_to_file"`
 	LogDirectory string `json:"log_directory"`
+
+	Env map[string]string `json:"env"`
 }
 
 type App struct {

@@ -135,6 +135,7 @@ The web object contains information on the web settings.
 | port | int | `2201` | The web port to bind with. |
 | log_to_file | bool | `true` | Logs `stdout` and `stderr` pipes from processes launched to `log_directory/apps`. |
 | log_directory | string | `logs/web` | The directory to log to. |
+| env | Object | `{}` | A string to string object that represents environmental variables that should be set before launching every application. |
 
 <details>
     <summary>Example(s)</summary>
@@ -143,6 +144,10 @@ The web object contains information on the web settings.
 {
     "host": "192.168.1.5",
     "port": 80,
+    "env": {
+        "GLOBAL_ENV1": "VAL1",
+        "GLOBAL_ENV2": "VAL2"
+    }
 }
 ```
 </details>
