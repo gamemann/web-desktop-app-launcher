@@ -51,7 +51,7 @@ int main(int argc, char **argv) {
     }
 
     // Setup GUI application.
-    SetupGui(cfg);
+    SetupGui(cfg, argc, argv);
 
     while (true) {
         std::this_thread::sleep_for(std::chrono::seconds(1));
