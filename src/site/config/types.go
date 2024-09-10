@@ -3,6 +3,9 @@ package config
 type Web struct {
 	Host string `json:"host"`
 	Port int    `json:"port"`
+
+	LogToFile    bool   `json:"log_to_file"`
+	LogDirectory string `json:"log_directory"`
 }
 
 type App struct {

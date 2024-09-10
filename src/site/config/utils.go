@@ -18,3 +18,11 @@ func (cfg *Config) Print() {
 		}
 	}
 }
+
+func (cfg *Config) SetDefaults() {
+	cfg.Web.LogToFile = true
+	cfg.Web.LogDirectory = "logs/web"
+
+	cfg.Web.Host = "127.0.0.1"
+	cfg.Web.Port = 2001
+}

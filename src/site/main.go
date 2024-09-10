@@ -54,6 +54,9 @@ func main() {
 	// Load config.
 	var cfg config.Config
 
+	// Set defaults.
+	cfg.SetDefaults()
+
 	err := cfg.LoadFromFs(*cfgPath)
 
 	if err != nil {

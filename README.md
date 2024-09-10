@@ -133,6 +133,8 @@ The web object contains information on the web settings.
 | --- | ---- | ------- | ----------- |
 | host | string | `127.0.0.1` | The web host/address to bind with. |
 | port | int | `2201` | The web port to bind with. |
+| log_to_file | bool | `true` | Logs `stdout` and `stderr` pipes from processes launched to `log_directory/apps`. |
+| log_directory | string | `logs/web` | The directory to log to. |
 
 <details>
     <summary>Example(s)</summary>
