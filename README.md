@@ -169,27 +169,25 @@ The web object contains information on the web settings.
     {
         "name": "Steam Link",
         "start": "flatpak run com.valvesoftware.SteamLink",
-        "stop": "flatpak stop com.valvesoftware.SteamLink",
-        "banner": "/images/steam.jpg",
-        "env": {
-            "DISPLAY": ":0",
-            "SOMETHINGELSE": "2"
-        }
+        "stop": "pkill steamlink",
+        "banner": "/images/steam.jpg"
     },
     {
         "name": "RetroArch",
         "start": "retroarch",
+        "stop": "pkill retroarch",
         "banner": "/images/retroarch.png"
     },
     {
         "name": "Dolphin",
         "start": "dolphin-emu",
+        "stop": "pkill dolphin-emu",
         "banner": "/images/dolphin.jpg"
     },
     {
         "name": "Plex HTPC",
-        "start": "",
-        "stop": "",
+        "start": "flatpak run tv.plex.PlexHTPC",
+        "stop": "pkill plex-bin",
         "banner": "/images/plex.png"
     }
 ]
