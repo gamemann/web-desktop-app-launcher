@@ -6,29 +6,35 @@
     },
     "web": {
         "host": "127.0.0.1",
-        "port": 2001
+        "port": 2001,
+        "env": {
+            "DISPLAY": ":0",
+            "XAUTHORITY": "$HOME/.Xauthority"
+        }
     },
     "applications": [
         {
             "name": "Steam Link",
             "start": "flatpak run com.valvesoftware.SteamLink",
-            "stop": "flatpak stop com.valvesoftware.SteamLink",
+            "stop": "pkill steamlink",
             "banner": "/images/steam.jpg"
         },
         {
             "name": "RetroArch",
             "start": "retroarch",
+            "stop": "pkill retroarch",
             "banner": "/images/retroarch.png"
         },
         {
             "name": "Dolphin",
             "start": "dolphin-emu",
+            "stop": "pkill dolphin-emu",
             "banner": "/images/dolphin.jpg"
         },
         {
             "name": "Plex HTPC",
-            "start": "",
-            "stop": "",
+            "start": "flatpak run tv.plex.PlexHTPC",
+            "stop": "pkill plex-bin",
             "banner": "/images/plex.png"
         }
     ]
