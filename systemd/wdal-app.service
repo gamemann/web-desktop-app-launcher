@@ -6,6 +6,7 @@ Requires=network-online.target
 [Service]
 User=myuser
 Environment="DISPLAY=:0"
+Environment="XAUTHORITY=$HOME/.Xauthority"
 WorkingDirectory=/var/web-desktop-app-launcher
 ExecStart=/usr/bin/wdal-app
 Restart=always
