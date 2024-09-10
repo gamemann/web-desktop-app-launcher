@@ -1,0 +1,14 @@
+[Unit]
+Description=WDAL Desktop
+After=network-online.target
+Requires=network-online.target
+
+[Service]
+User=myuser
+Environment="DISPLAY=:0"
+WorkingDirectory=/var/web-desktop-app-launcher
+ExecStart=/usr/bin/wdal-app
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

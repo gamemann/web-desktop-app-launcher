@@ -1,0 +1,3 @@
+[submodule "src/desktop/modules/json"]
+	path = src/desktop/modules/json
+	url = https://github.com/nlohmann/json

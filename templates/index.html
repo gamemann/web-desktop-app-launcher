@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Web Desktop Application Launcher</title>
+
+        <link rel="stylesheet" href="/css/style.css" />
+        <script src="/js/index.js"></script>
+    </head>
+    <body>
+        <h1>Web Desktop Application Launcher</h1>
+        <div id="app-list">
+            {{range .}}
+                <div class="app-item">
+                    {{if .Banner}}
+                        <img src="{{.Banner}}" />
+                        <div class="app-bg-overlay"></div>                      
+                    {{end}}
+                    <div>
+                        <div>
+                            <h2>{{.Name}}</h2>
+                        </div>
+                        <div class="app-grow"></div>
+                        <div class="app-buttons">
+                            {{if .Start}}
+                                <button class="app-start" data-command="{{.Start}}">Start</button>
+                            {{end}}
+
+                            {{if .Stop}}
+                                <button class="app-stop" data-command="{{.Stop}}
+                                ">Stop</button>
+                            {{end}}
+                        </div>
+                    </div>
+                </div>
+            {{end}}
+        </div>
+    </body>
+</html>

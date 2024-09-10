@@ -1,0 +1,35 @@
+{
+    "desktop": {
+        "window_width": 1920,
+        "window_height": 1080,
+        "full_screen": true
+    },
+    "web": {
+        "host": "127.0.0.1",
+        "port": 2001
+    },
+    "applications": [
+        {
+            "name": "Steam Link",
+            "start": "flatpak run com.valvesoftware.SteamLink",
+            "stop": "flatpak stop com.valvesoftware.SteamLink",
+            "banner": "/images/steam.jpg"
+        },
+        {
+            "name": "RetroArch",
+            "start": "retroarch",
+            "banner": "/images/retroarch.png"
+        },
+        {
+            "name": "Dolphin",
+            "start": "dolphin-emu",
+            "banner": "/images/dolphin.jpg"
+        },
+        {
+            "name": "Plex HTPC",
+            "start": "",
+            "stop": "",
+            "banner": "/images/plex.png"
+        }
+    ]
+}
