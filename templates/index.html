@@ -12,25 +12,24 @@
     <body>
         <h1>Web Desktop Application Launcher</h1>
         <div id="app-list">
-            {{range .}}
+            {{range $index, $app := .}}
                 <div class="app-item">
-                    {{if .Banner}}
-                        <img src="{{.Banner}}" />
+                    {{if $app.Banner}}
+                        <img src="{{$app.Banner}}" />
                         <div class="app-bg-overlay"></div>                      
                     {{end}}
                     <div>
                         <div>
-                            <h2>{{.Name}}</h2>
+                            <h2>{{$app.Name}}</h2>
                         </div>
                         <div class="app-grow"></div>
                         <div class="app-buttons">
-                            {{if .Start}}
-                                <button class="app-start" data-command="{{.Start}}">Start</button>
+                            {{if $app.Start}}
+                                <button class="app-start" data-index="{{$index}}" data-type="0">Start</button>
                             {{end}}
 
-                            {{if .Stop}}
-                                <button class="app-stop" data-command="{{.Stop}}
-                                ">Stop</button>
+                            {{if $app.Stop}}
+                                <button class="app-stop" data-index="{{$index}}" data-type="1">Stop</button>
                             {{end}}
                         </div>
                     </div>

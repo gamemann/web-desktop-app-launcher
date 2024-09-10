@@ -2,8 +2,9 @@ window.onload = function() {
     console.log("Window loaded!")
 
     function parseCmd() {
-        // Get command.
-        var cmd = this.getAttribute("data-command");
+        // Get app info.
+        var idx = parseInt(this.getAttribute("data-index"), 10)
+        var type = parseInt(this.getAttribute("data-type"), 10)
 
         // Send POST request to back-end that submits command.
         fetch("/backend/submit", {
@@ -11,10 +12,13 @@ window.onload = function() {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ command: cmd })
+            body: JSON.stringify({ index: idx, type: type })
         })
         .then(data => {
-            console.log("Command '" + cmd + "' executed successfully!")
+            if (type == 0)
+                console.log("Launched application successfully!")
+            else
+                console.log("Stopped application successfully!")
         })
         .catch((err) => {
             console.error(err)

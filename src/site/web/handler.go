@@ -13,8 +13,9 @@ import (
 	"github.com/gamemann/web-desktop-app-launcher/config"
 )
 
-type CommandData struct {
-	Cmd string `json:"command"`
+type AppData struct {
+	Index int `json:"index"`
+	Type  int `json:"type"`
 }
 
 func RootHandler(w http.ResponseWriter, r *http.Request, cfg *config.Config) {
@@ -45,9 +46,9 @@ func BackendHandler(w http.ResponseWriter, r *http.Request, cfg *config.Config) 
 		return
 	}
 
-	var cmdData CommandData
+	var appData AppData
 
-	err := json.NewDecoder(r.Body).Decode(&cmdData)
+	err := json.NewDecoder(r.Body).Decode(&appData)
 
 	if err != nil {
 		http.Error(w, "Error decoding JSON data.", http.StatusInternalServerError)
@@ -55,8 +56,33 @@ func BackendHandler(w http.ResponseWriter, r *http.Request, cfg *config.Config) 
 		return
 	}
 
+	// Get app.
+	var app config.App
+	found := false
+
+	for k, v := range cfg.Apps {
+		if k == appData.Index {
+			app = v
+			found = true
+
+			break
+		}
+	}
+
+	if !found {
+		http.Error(w, "App not found at index.", http.StatusInternalServerError)
+
+		return
+	}
+
+	toExec := app.Start
+
+	if appData.Type == 1 {
+		toExec = app.Stop
+	}
+
 	// We'll want to make sure we handle spaces properly.
-	cmdSplit := strings.Fields(cmdData.Cmd)
+	cmdSplit := strings.Fields(toExec)
 
 	// Run command.
 	cmd := exec.Command(cmdSplit[0], cmdSplit[1:]...)
@@ -69,13 +95,9 @@ func BackendHandler(w http.ResponseWriter, r *http.Request, cfg *config.Config) 
 		env = append(env, fmt.Sprintf("%s=%s", k, v))
 	}
 
-	// Add appplication-specific environmental variables (yeah we need a better way on handling this in the future).
-	for _, app := range cfg.Apps {
-		if app.Start == cmdData.Cmd || app.Stop == cmdData.Cmd {
-			for k, v := range app.Env {
-				env = append(env, fmt.Sprintf("%s=%s", k, v))
-			}
-		}
+	// Add appplication-specific environmental variables.
+	for k, v := range app.Env {
+		env = append(env, fmt.Sprintf("%s=%s", k, v))
 	}
 
 	cmd.Env = env
@@ -92,7 +114,7 @@ func BackendHandler(w http.ResponseWriter, r *http.Request, cfg *config.Config) 
 		return
 	}
 
-	fmt.Printf("Executed command: '%s'.\n", cmdData.Cmd)
+	fmt.Printf("Executed command: '%s'.\n", toExec)
 
 	if cmd.Process == nil {
 		fmt.Println("Process doesn't exist.")
