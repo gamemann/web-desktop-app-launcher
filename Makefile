@@ -16,7 +16,7 @@ json:
 	mkdir $(MODULE_JSON_DIR)/build && cd $(MODULE_JSON_DIR)/build && cmake .. && cmake --build . --target install
 
 wdal-app:
-	g++ -o build/wdal-app $(SRC_DIR)/desktop/app.cpp
+	g++ `pkg-config --cflags gtk+-3.0 webkit2gtk-4.0` -o build/wdal-app  $(SRC_DIR)/desktop/app.cpp `pkg-config --libs gtk+-3.0 webkit2gtk-4.0`
 
 wdal-web:
 	cd $(SRC_DIR)/site/ && go build -o ../../$(BUILD_DIR)/wdal-web
