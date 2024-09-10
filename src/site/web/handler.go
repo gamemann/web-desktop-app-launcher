@@ -53,7 +53,21 @@ func BackendHandler(w http.ResponseWriter, r *http.Request, cfg *config.Config) 
 	}
 
 	// Run command.
-	exec.Command(cmdData.Cmd)
+	cmd := exec.Command(cmdData.Cmd)
+
+	err = cmd.Start()
+
+	if err != nil {
+		fmt.Println(err)
+
+		return
+	}
 
 	fmt.Printf("Executed command: '%s'.\n", cmdData.Cmd)
+
+	err = cmd.Wait()
+
+	if err != nil {
+		fmt.Println(err)
+	}
 }
