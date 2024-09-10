@@ -7,6 +7,8 @@ While I am sure there are applications that are already capable of achieving thi
 **NOTE** - The website intentionally doesn't contain any security measures and runs commands under the user running the website. Do **not** expose this website to unauthorized users! I only recommend running it under your LAN and on a server that doesn't contain any sensitive data.
 
 ## Preview
+### Video Demonstration
+[![vid](./preview/vid-thumb.jpeg)](https://www.youtube.com/watch?v=0g1pquXcWic)
 ### Website
 ![Website Preview](./preview/web-preview01.png)
 
