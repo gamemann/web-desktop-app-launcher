@@ -1,5 +1,3 @@
-**Work In Progress!**
-
 After purchasing a [mini-PC](https://www.amazon.com/dp/B0D5CS3CDS) that I planned to use for movie and game streaming along with emulation ([Dolphin](https://dolphin-emu.org/); Wii/GameCube), I found opening specific applications from the terminal was inconvenient. I wanted an application that allowed me to launch specific applications such as [Steam Link](https://store.steampowered.com/app/353380/Steam_Link/), [RetroArch](https://www.retroarch.com/), [Dolphin](https://dolphin-emu.org/), and [Plex HTPC](https://support.plex.tv/articles/htpc-getting-started/) from the desktop itself and through a website.
 
 While I am sure there are applications that are already capable of achieving this, I wanted to make my own applications to gain more experience (specifically with C++ and GTK + WebKit2GTK).
