@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 	"os/exec"
+	"strings"
 
 	"github.com/gamemann/web-desktop-app-launcher/config"
 )
@@ -54,8 +55,11 @@ func BackendHandler(w http.ResponseWriter, r *http.Request, cfg *config.Config) 
 		return
 	}
 
+	// We'll want to make sure we handle spaces properly.
+	cmdSplit := strings.Fields(cmdData.Cmd)
+
 	// Run command.
-	cmd := exec.Command(cmdData.Cmd)
+	cmd := exec.Command(cmdSplit[0], cmdSplit[1:]...)
 
 	// We need to get pipes now for logging.
 	outPipe, _ := cmd.StdoutPipe()
