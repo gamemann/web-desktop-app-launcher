@@ -73,6 +73,8 @@ func BackendHandler(w http.ResponseWriter, r *http.Request, cfg *config.Config) 
 		}
 	}
 
+	cmd.Env = env
+
 	// We need to get pipes now for logging.
 	outPipe, _ := cmd.StdoutPipe()
 	errPipe, _ := cmd.StderrPipe()
