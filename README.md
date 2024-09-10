@@ -191,5 +191,14 @@ The web object contains information on the web settings.
 ```
 </details>
 
+## Notes
+### Launching GUI Applications From WDAL On Debian 12
+There were a couple of things I needed to do in order to get applications to launch from WDAL.
+
+1. The command `xhost +SI:localuser:$(whoami)` needs to be executed. I'd recommend placing this in your `$HOME/.bashrc` file so it saves on reboot.
+2. The `DISPLAY` (usually `:0`) and `XAUTHORITY` (usually `$HOME/.Xauthority`) environmental variables need to be set inside of the config for all apps.
+
+This is likely the case for other Linux distros also. There's a chance on other distros like Ubuntu that it has a different desktop manager (e.g. GDM) and the `.Xauthority` file is somewhere else.
+
 ## Credits
 * [Christian Deacon](https://github.com/gamemann)
