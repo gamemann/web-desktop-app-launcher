@@ -5,9 +5,9 @@
 #include <nlohmann/json.hpp>
 
 struct Config {
-    int WindowWidth = 0;
-    int WindowHeight = 0;
-    bool FullScreen = false;
+    int WindowWidth = 1920;
+    int WindowHeight = 1080;
+    bool FullScreen = true;
     std::string WebHost = "127.0.0.1";
     int WebPort = 2201;
 } typedef Config;
