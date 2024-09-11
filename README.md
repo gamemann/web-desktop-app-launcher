@@ -48,7 +48,7 @@ cd /var/web-desktop-app-launcher
 
 ### Desktop Application
 #### Building The JSON Library
-You will need to build the [`nlohmann/json`](https://github.com/nlohmann/json) before building the main desktop application. You can use `make json` or the following shell commands.
+You will need to build the [`nlohmann/json`](https://github.com/nlohmann/json) library before building the main desktop application. You can use `make json` or the following shell commands.
 
 ```bash
 # Change to JSON library.
@@ -83,7 +83,7 @@ Both the desktop and web applications parse a single JSON config file (the defau
 
 | Key | Type | Default | Description |
 | --- | ---- | ------- | ----------- |
-| desktop | Desktop Object | `{}` | The desktop object (read below). |
+| desktop | Desktop Object | `{}` | The desktop application object (read below). |
 | web | Web Object | `{}` | The web object (read below). |
 | applications | Application Object Array | `[]` | The applications object array (read below). |
 
@@ -106,12 +106,12 @@ Both the desktop and web applications parse a single JSON config file (the defau
 </details>
 
 ### Desktop Object
-The desktop object contains information on the desktop settings.
+The desktop object contains information on the desktop application.
 
 | Key | Type | Default | Description |
 | --- | ---- | ------- | ----------- |
-| window_width | int | `1920` | The desktop window width (useless with full-screen mode). |
-| window_height | int | `1080` | The desktop window height (useless with full-screen mode). |
+| window_width | int | `1920` | The application window width (useless with full-screen mode). |
+| window_height | int | `1080` | The application window height (useless with full-screen mode). |
 | full_screen | bool | `true` | Whether to use full-screen mode for the desktop application. |
 
 <details>
@@ -127,7 +127,7 @@ The desktop object contains information on the desktop settings.
 </details>
 
 ### Web Object
-The web object contains information on the web settings.
+The web object contains information on the website and web server.
 
 | Key | Type | Default | Description |
 | --- | ---- | ------- | ----------- |
