@@ -47,7 +47,10 @@ func main() {
 		os.Exit(0)
 	}
 
-	cfgPath := flag.String("cfgpath", "/etc/wdal/conf.json", "The path to the config file.")
+	var cfgPath string
+
+	flag.StringVar(&cfgPath, "cfgpath", "/etc/wdal/conf.json", "The path to the config file.")
+	flag.StringVar(&cfgPath, "c", "/etc/wdal/conf.json", "The path to the config file.")
 
 	flag.Parse()
 
@@ -57,7 +60,7 @@ func main() {
 	// Set defaults.
 	cfg.SetDefaults()
 
-	err := cfg.LoadFromFs(*cfgPath)
+	err := cfg.LoadFromFs(cfgPath)
 
 	if err != nil {
 		fmt.Println("Failed to load config file.")
