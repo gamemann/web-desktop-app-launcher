@@ -198,10 +198,19 @@ The web object contains information on the web settings.
 ### Launching GUI Applications From WDAL On Debian 12
 There were a couple of things I needed to do in order to get applications to launch from WDAL.
 
-1. The command `xhost +SI:localuser:$(whoami)` needs to be executed. I'd recommend placing this in your `$HOME/.bashrc` file so it saves on reboot.
+1. The command `xhost +LOCAL:` (or `xhost +SI:localuser:$(whoami)`) needs to be executed. Executing this command doesn't save on reboot, but for most Linux distros you can put this command inside your `$HOME/.bashrc` file so it saves on reboot.
 2. The `DISPLAY` (usually `:0`) and `XAUTHORITY` (usually `$HOME/.Xauthority`) environmental variables need to be set inside of the config for all apps.
 
 This is likely the case for other Linux distros also. There's a chance on other distros like Ubuntu that it has a different desktop manager (e.g. GDM) and the `.Xauthority` file is somewhere else.
+
+For my Debian 12 installation that has autologin enabled (and keyring disabled), placing the `xhost` command inside of the `$HOME/.bashrc`, `$HOME/.xinitrc`, `$HOME/.xprofile`, `/etc/profile`, and `/etc/X11/Xsession.d/60xhost` files did not work on reboot along with a `systemd` service. Therefore, I needed to create a desktop autostart file in `$HOME/.config/autostart/xhost.desktop` with the following contents (you may need to create the `$HOME/.config/autostart` directory).
+
+```bash
+[Desktop Entry]
+Type=Application
+Exec=bash -c "sleep 5 && DISPLAY=:0 xhost +LOCAL:"
+X-GNOME-Autostart-enabled=true
+```
 
 ## Credits
 * [Christian Deacon](https://github.com/gamemann)
