@@ -15,7 +15,7 @@ int main(int argc, char **argv) {
     CmdLine cmd;
     
     if ((ret = ParseCmdLine(cmd, argc, argv)) != 0) {
-        fprintf(stderr, "Error parsing command line. Return code => %d.\n", ret);
+        std::cerr << "Error parsing command line :: Return code => " << ret << std::endl;
 
         return ret;
     }
@@ -37,11 +37,8 @@ int main(int argc, char **argv) {
     // Parse config.
     Config cfg;
     
-    if ((ret = ParseConfig(cfg, cmd.CfgPath)) != 0) {
-        fprintf(stderr, "Error parsing config. Return code => %d.\n", ret);
-
+    if ((ret = ParseConfig(cfg, cmd.CfgPath)) != 0)
         return ret;
-    }
 
     // Check for list option.
     if (cmd.List) {
@@ -52,10 +49,6 @@ int main(int argc, char **argv) {
 
     // Setup GUI application.
     SetupGui(cfg, argc, argv);
-
-    while (true) {
-        std::this_thread::sleep_for(std::chrono::seconds(1));
-    }
 
     return 0;
 }

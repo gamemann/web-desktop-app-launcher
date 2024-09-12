@@ -2,6 +2,10 @@
 
 #include <iostream>
 #include <fstream>
+
+#include <cerrno>
+#include <cstring>
+
 #include <nlohmann/json.hpp>
 
 struct Config {
@@ -22,12 +26,12 @@ static void ListConfig(Config& cfg) {
 }
 
 static int ParseConfig(Config& cfg, const std::string& path) {
-    std::cout << "Parsing config file: " << path << std::endl;
+    std::cout << "Parsing config file '" << path << "'..." << std::endl;
     
     std::ifstream f(path);
 
     if (!f.is_open()) {
-        std::cerr << "Error opening config file" << std::endl;
+        std::cerr << "Error opening config file :: " << std::strerror(errno) << std::endl;
 
         return 1;
     }
@@ -51,7 +55,7 @@ static int ParseConfig(Config& cfg, const std::string& path) {
         cfg.WebHost = json_cfg.at("web").at("host").get<std::string>();
         cfg.WebPort = json_cfg.at("web").at("port").get<int>();
     } catch (const nlohmann::json::exception& e) {
-        std::cerr << "Error accessing JSON fields :: " << e.what() << std::endl;
+        std::cerr << "Error accessing and assigning JSON fields :: " << e.what() << std::endl;
 
         return 1;
     }

@@ -10,6 +10,8 @@
 static void DestroyWindow(GtkWidget* widget, GtkWidget* window)
 {
     gtk_main_quit();
+
+    std::cout << "Closing application..." << std::endl;
 }
 
 static gboolean CloseWebView(WebKitWebView* webView, GtkWidget* window)
@@ -25,7 +27,7 @@ static int SetupGui(Config& cfg, int argc, char **argv) {
 
     sprintf(url, "http://%s:%d", cfg.WebHost.c_str(), cfg.WebPort);
 
-    std::cout << "Opening '" << url << "'!" << std::endl;
+    std::cout << "Opening URL '" << url << "'!" << std::endl;
 
     // Init GTK.
     gtk_init(&argc, &argv);
