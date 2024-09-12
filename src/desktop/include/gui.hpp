@@ -9,9 +9,9 @@
 
 static void DestroyWindow(GtkWidget* widget, GtkWidget* window)
 {
-    gtk_main_quit();
-
     std::cout << "Closing application..." << std::endl;
+
+    gtk_main_quit();
 }
 
 static gboolean CloseWebView(WebKitWebView* webView, GtkWidget* window)

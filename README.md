@@ -132,7 +132,7 @@ The web object contains information on the website and web server.
 | Key | Type | Default | Description |
 | --- | ---- | ------- | ----------- |
 | host | string | `127.0.0.1` | The web host/address to bind with. |
-| port | int | `2201` | The web port to bind with. |
+| port | int | `2001` | The web port to bind with. |
 | log_to_file | bool | `true` | Logs `stdout` and `stderr` pipes from processes launched to `log_directory/apps`. |
 | log_directory | string | `logs/web` | The directory to log to. |
 | env | Object | `{}` | A string to string object that represents environmental variables that should be set before launching every application. |

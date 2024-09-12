@@ -13,7 +13,7 @@ struct Config {
     int WindowHeight = 1080;
     bool FullScreen = true;
     std::string WebHost = "127.0.0.1";
-    int WebPort = 2201;
+    int WebPort = 2001;
 } typedef Config;
 
 static void ListConfig(Config& cfg) {
