@@ -69,6 +69,8 @@ func main() {
 		os.Exit(1)
 	}
 
+	fmt.Printf("Starting web server on %s:%d...\n", cfg.Web.Host, cfg.Web.Port)
+
 	// Setup and load web server.
 	err = web.SetupServer(&cfg)
 
